@@ -7,34 +7,43 @@ import Statistics from "./Statistics/Statistics";
 
 class App extends React.Component  {
   state = {
-    good: 0,
+    good: 5,
     natural: 0,
     bad: 0,
   };
 
 
 
-  handleIncrement = () => {
-    const option = Object.keys(this.state);
-    console.log(option)
-    this.setState(prevState => ({
-      good: prevState.value + 1
-    }))
-    console.log(this.state)
-  };
+  // handleIncrement = () => {
+  //   // const option = Object.keys(this.state);
+  //   // console.log(option)
+
+  //   this.setState(prevState => ({
+  //       good: prevState.good + 1
+  //     })
+  // )}
 
 
   render() {
     return (
       <div>
-        <Feeddback  onIncrement={this.handleIncrement}/>
+        <Feeddback  />
 
         <div>
     <h2>Please leave feedback</h2>
       <div>
-        <button type="button" onClick={this.handleIncrement}>Good</button>
-        <button type="button" onClick={this.handleIncrement}>Natural</button>
-        <button type="button" onClick={this.handleIncrement}>Bad</button>
+        <button type="button" onClick={() => this.setState(prevState => ({
+        good: prevState.good + 1
+      })
+  )}>Good</button>
+        <button type="button" onClick={() => this.setState(prevState => ({
+        natural: prevState.natural + 1
+      })
+  )}>Natural</button>
+        <button type="button" onClick={() => this.setState(prevState => ({
+        bad: prevState.bad + 1
+      })
+  )}>Bad</button>
       </div>
     </div>
 
