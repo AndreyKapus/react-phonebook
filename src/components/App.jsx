@@ -7,44 +7,42 @@ import Statistics from "./Statistics/Statistics";
 
 class App extends React.Component  {
   state = {
-    good: 5,
+    good: 0,
     natural: 0,
     bad: 0,
   };
 
+  handleIncrement = (key) => {
+    this.setState(prevState => ({
+        [key]: prevState[key] + 1
+      })
+  )}
 
+  countTotalFeedback = () => {
+    const {good, natural, bad} = this.state;
 
-  // handleIncrement = () => {
-  //   // const option = Object.keys(this.state);
-  //   // console.log(option)
+    const total = good + natural + bad;
+    return total;
+  }
 
-  //   this.setState(prevState => ({
-  //       good: prevState.good + 1
-  //     })
-  // )}
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+    const good = this.state.good;
 
+    const parcentage = (good / total * 100).toFixed();
+    return parcentage
+  }
+
+  localSrorageSave = () => {
+    localStorage.setItem("this.state", this.state)
+  }
 
   render() {
     return (
       <div>
-        <Feeddback  />
-
         <div>
     <h2>Please leave feedback</h2>
-      <div>
-        <button type="button" onClick={() => this.setState(prevState => ({
-        good: prevState.good + 1
-      })
-  )}>Good</button>
-        <button type="button" onClick={() => this.setState(prevState => ({
-        natural: prevState.natural + 1
-      })
-  )}>Natural</button>
-        <button type="button" onClick={() => this.setState(prevState => ({
-        bad: prevState.bad + 1
-      })
-  )}>Bad</button>
-      </div>
+    <Feeddback  props={this.state} handleIncrement={this.handleIncrement}/>
     </div>
 
         <h3>Statistics</h3>
@@ -52,6 +50,8 @@ class App extends React.Component  {
           <div>Good: {this.state.good}</div>
           <div>Natural: {this.state.natural}</div>
           <div>Bad: {this.state.bad}</div>
+          <div>Total: {this.countTotalFeedback()}</div>
+
         </div>
       </div>
     );
