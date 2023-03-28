@@ -15,8 +15,13 @@ class Form extends React.Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault()
-    this.props.onSubmit(this.state);
+    event.preventDefault();
+
+    const contact = {
+      name: this.state.name
+    }
+    
+    this.props.onSubmit(contact);
     this.reset()
   }
 
