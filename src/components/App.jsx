@@ -10,14 +10,34 @@ class App extends React.Component  {
   };
 
   onSubmitHandler = data => {
-    this.setState({contacts: [{name: data.name}], name: data.name})
+    // console.log(data.name)
+    // this.setState({contacts: [{name: data.name}], name: data.name})
 
+    const human = {
+      id: this.state.name,
+      name: data.name,
+    }
+
+    this.setState(prevState => ({
+      contacts: [human, ...prevState.contacts]
+    }));
+  }
+
+  addContact = contact => {
+    console.log(contact)
+    // const human = {
+    //   contact,
+    // }
+
+    // this.setState(prevState => ({
+    //   contacts: [human, ...prevState.Contacts]
+    // }));
   }
 
   render() {
     return(
       <>
-      <Form onSubmit={this.onSubmitHandler}/>
+      <Form onSubmit={this.onSubmitHandler} addContact={this.addContact}/>
       <Contacts props={this.state.contacts}/>
       </>
     )

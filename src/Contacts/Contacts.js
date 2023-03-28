@@ -1,10 +1,12 @@
+import { nanoid } from 'nanoid'
+
 const Contacts = ({props}) => {
-  console.log(props.name)
-  // const {name, contacts} = props;
+  console.log(props)
+
   return(
 <>
     {props.map(el => {
-    return  <div key={el.name}>{el.name}</div>
+    return <div key={nanoid()}>{el.name}</div>
     })}
 </>
   )

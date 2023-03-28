@@ -17,17 +17,15 @@ class Form extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const contact = {
-      name: this.state.name
-    }
-    
+    const contact =
+      {name: this.state.name}
+
+    // console.log(contact)
+
     this.props.onSubmit(contact);
-    this.reset()
+    this.setState({name: ''})
   }
 
-reset = () => {
-  this.setState(this.initialState)
-}
 
   render() {
     const {name} = this.state.name
