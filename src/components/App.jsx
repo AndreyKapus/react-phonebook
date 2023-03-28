@@ -5,8 +5,9 @@ import Contacts from "Contacts";
 
 class App extends React.Component  {
   state = {
-    contacts: [{'name': 'nik'}, {"name": 'mak'}],
-    name: ''
+    contacts: [{'name': 'nik', 'number': '09421324'}, {name: 'mak', "number": "0241412442"}],
+    name: '',
+    number: '',
   };
 
   onSubmitHandler = data => {
@@ -16,10 +17,11 @@ class App extends React.Component  {
     const human = {
       id: this.state.name,
       name: data.name,
+      number: data.number,
     }
 
     this.setState(prevState => ({
-      contacts: [human, ...prevState.contacts]
+      contacts: [...prevState.contacts, human]
     }));
   }
 
