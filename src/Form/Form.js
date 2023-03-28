@@ -29,13 +29,14 @@ class Form extends React.Component {
   }
 
 
+
   render() {
     const {name, number} = this.state.name
 
     return(
       <form onSubmit={this.handleSubmit}>
-        <label>
-        Name
+        <label style={{fontFamily: 'Consolas', fontWeight: '500', color: '#008F11'}}>
+        Name of the bigest programist ever
         <input
           type="text"
           value={name}
