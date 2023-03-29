@@ -12,6 +12,7 @@ class App extends React.Component  {
     filter: ''
   };
 
+
   onSubmitHandler = data => {
 
     const human = {
@@ -30,7 +31,14 @@ class App extends React.Component  {
     this.setState({filter: e.currentTarget.value})
   }
 
+  deleteContact = (id) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id)
+    })
+    );}
+
   render() {
+
 
     const visibleContacts = this.state.contacts.filter(contact => {
       return contact.name.includes(this.state.filter)
@@ -40,7 +48,7 @@ class App extends React.Component  {
       <>
       <Form onSubmit={this.onSubmitHandler} addContact={this.addContact}/>
       <Filter value={this.filter} onChange={this.changeFilter}/>
-      <Contacts props={visibleContacts}/>
+      <Contacts props={visibleContacts} onDeleteContact={this.deleteContact}/>
 
       </>
     )
