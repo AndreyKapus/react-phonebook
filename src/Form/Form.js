@@ -12,8 +12,12 @@ class Form extends React.Component {
   }
 
   handleInputChange = event => {
-    const inputCurrentValue = event.currentTarget.value
-    this.setState({name: inputCurrentValue})
+    // const inputCurrentValue = event.currentTarget.value
+    // this.setState({name: inputCurrentValue})
+
+    this.setState({
+      [event.currentTarget.name]: event.currentTarget.value,
+    })
   }
 
   handleSubmit = event => {
@@ -36,7 +40,7 @@ class Form extends React.Component {
     return(
       <form onSubmit={this.handleSubmit}>
         <label style={{fontFamily: 'Consolas', fontWeight: '500', color: '#008F11'}}>
-        Name of the bigest programist ever
+        Name
         <input
           type="text"
           value={name}
@@ -52,6 +56,7 @@ class Form extends React.Component {
             type="tel"
             name="number"
             value={number}
+            onChange={this.handleInputChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
