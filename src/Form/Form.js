@@ -12,8 +12,6 @@ class Form extends React.Component {
   }
 
   handleInputChange = event => {
-    // const inputCurrentValue = event.currentTarget.value
-    // this.setState({name: inputCurrentValue})
 
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value,
@@ -25,8 +23,6 @@ class Form extends React.Component {
 
     const contact =
       {name: this.state.name, number: this.state.number}
-
-    // console.log(contact)
 
     this.props.onSubmit(contact);
     this.setState({name: '', number: ''})

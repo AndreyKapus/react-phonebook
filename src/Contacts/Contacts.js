@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid'
 
 const Contacts = ({props}) => {
-  console.log(props)
 
   return(
 <>

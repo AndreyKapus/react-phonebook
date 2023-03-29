@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "Form";
 import Contacts from "Contacts";
+import Filter from "Filter/Filter";
 
 
 class App extends React.Component  {
@@ -8,11 +9,10 @@ class App extends React.Component  {
     contacts: [{'name': 'nik', 'number': '09421324'}, {name: 'mak', "number": "0241412442"}],
     name: '',
     number: '',
+    filter: ''
   };
 
   onSubmitHandler = data => {
-    // console.log(data.name)
-    // this.setState({contacts: [{name: data.name}], name: data.name})
 
     const human = {
       id: this.state.name,
@@ -20,27 +20,28 @@ class App extends React.Component  {
       number: data.number,
     }
 
-    this.setState(prevState => ({
+    this.setState(prevState => (
+      {
       contacts: [...prevState.contacts, human]
     }));
   }
 
-  addContact = contact => {
-    console.log(contact)
-    // const human = {
-    //   contact,
-    // }
-
-    // this.setState(prevState => ({
-    //   contacts: [human, ...prevState.Contacts]
-    // }));
+  changeFilter = (e) => {
+    this.setState({filter: e.currentTarget.value})
   }
 
   render() {
+
+    const visibleContacts = this.state.contacts.filter(contact => {
+      return contact.name.includes(this.state.filter)
+    })
+
     return(
       <>
       <Form onSubmit={this.onSubmitHandler} addContact={this.addContact}/>
-      <Contacts props={this.state.contacts}/>
+      <Filter value={this.filter} onChange={this.changeFilter}/>
+      <Contacts props={visibleContacts}/>
+
       </>
     )
   }
